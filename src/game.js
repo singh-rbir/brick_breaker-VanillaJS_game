@@ -1,7 +1,6 @@
 import Paddle from "/src/paddle";
 import InputHandler from "/src/input";
 import Ball from "/src/ball";
-import Brick from "/src/brick";
 
 import { buildLevel, level1, level2, level3 } from "/src/levels";
 
@@ -10,8 +9,7 @@ const GAMESTATE = {
   RUNNING: 1,
   MENU: 2,
   GAMEOVER: 3,
-  TRANSITION: 4,
-  NEWLEVEL: 5
+  NEWLEVEL: 4
 };
 
 export default class Game {
@@ -60,6 +58,7 @@ export default class Game {
       this.currentLevel++;
       this.gamestate = GAMESTATE.NEWLEVEL;
       this.ball.increaseSpeed();
+      console.log("reached speed increase - game.js");
       this.start();
     }
 
@@ -119,7 +118,7 @@ export default class Game {
     if (this.gamestate === GAMESTATE.GAMEOVER) {
       ctx.rect(0, 0, this.gameWidth, this.gameHeight);
       ctx.fillStyle = "rgba(0, 0, 0, 1)";
-      ctx.fill(); 
+      ctx.fill();
 
       ctx.font = "70px Courier";
       ctx.fillStyle = "rgb(255,10,0)";
