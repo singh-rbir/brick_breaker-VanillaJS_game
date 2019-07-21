@@ -1,4 +1,7 @@
-import { detectCollision } from "/src/collisionDetection";
+import {
+  detectCollisionType1,
+  detectCollisionType2
+} from "/src/collisionDetection";
 
 export default class Brick {
   constructor(game, position) {
@@ -10,12 +13,17 @@ export default class Brick {
     this.height = 24;
 
     this.markedForDeletion = false;
+
+    this.dontChangeY = false;
   }
 
   update() {
-    if (detectCollision(this.game.ball, this)) {
+    if (detectCollisionType1(this.game.ball, this)) {
       this.game.ball.speed.y = -this.game.ball.speed.y;
-
+      this.markedForDeletion = true;
+    }
+    if (detectCollisionType2(this.game.ball, this)) {
+      this.game.ball.speed.x = -this.game.ball.speed.x;
       this.markedForDeletion = true;
     }
   }

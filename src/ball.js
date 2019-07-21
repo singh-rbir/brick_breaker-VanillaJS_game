@@ -1,4 +1,7 @@
-import { detectCollision } from "/src/collisionDetection";
+import {
+  detectCollisionType1,
+  detectCollisionType2
+} from "/src/collisionDetection";
 
 export default class Ball {
   constructor(game) {
@@ -19,8 +22,6 @@ export default class Ball {
     this.speed = { x: 4, y: this.previousY };
   }
 
-  resetToPrevious() {}
-
   increaseSpeed() {
     this.speed.y -= 3;
     this.previousY = this.speed.y;
@@ -37,7 +38,6 @@ export default class Ball {
   }
 
   update(deltaTime) {
-    //console.log(this.game.paddle.position.x);
     this.position.x += this.speed.x;
     this.position.y += this.speed.y;
 
@@ -56,9 +56,12 @@ export default class Ball {
       this.reset();
     }
 
-    if (detectCollision(this, this.game.paddle)) {
+    // Collision detection (perpendicular) of ball and paddle
+    if (detectCollisionType1(this, this.game.paddle)) {
       this.speed.y = -this.speed.y;
       this.position.y = this.game.paddle.position.y - this.size;
-    }
+    } // else if (detectCollisionType2(this, this.game.paddle)) {
+    //this.speed.x = -this.speed.x;
+    //}
   }
 }
