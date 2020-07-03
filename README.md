@@ -1,5 +1,7 @@
 # brick_breaker-VanillaJS_game
-Created with CodeSandbox
+
+<h3>My take on the classic brick-breaker game</h3>
+
 
 Play the game here: https://csb-vo91u.netlify.com/
 
